@@ -4,15 +4,15 @@ on:
   pull_request:
     types: [opened, closed]
     branches:
-      - master
+      - main
   push:
     branches:
-      - master
+      - main
 
 jobs:
   notify:
     runs-on: ubuntu-latest
-
+    environment: discord-notify
     steps:
       - uses: actions/checkout@v2
 

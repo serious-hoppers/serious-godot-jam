@@ -1,0 +1,31 @@
+name: Godot CI - Script Check
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate-scripts:
+    name: Validate Scripts and Build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Godot Engine
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          # Specify the exact Godot version you are using
+          version: 4.3.0 # Change to 3.x if using Godot 3
+          use-dotnet: false # Set to true if your project uses C# (.NET)
+
+      - name: Generate .godot Import Cache
+        # Warm-up import is required before running the editor in headless mode to prevent crashes
+        run: godot --headless --verbose --editor --quit
+
+      - name: Validate Scripts by Compiling/Testing
+        # This step forces Godot to read all scripts and will fail the job if a syntax error exists
+        run: godot --headless --verbose -e --quit

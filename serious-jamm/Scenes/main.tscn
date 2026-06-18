@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbd6tncc27k6c"]
+
+[ext_resource type="Material" uid="uid://b06rpqkiq76yo" path="res://Materials/new_standard_material_3d.tres" id="1_jjgbg"]
+[ext_resource type="Script" path="res://Scripts/Rotator.gd" id="2_8vjqc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7u77a"]
+material = ExtResource("1_jjgbg")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.957863, -0.17045, 0.231184, -1.85995e-09, 0.804883, 0.593433, -0.287227, -0.568427, 0.770968, 0.628395, 1.35052, 1.68385)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 1, 1, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_jjgbg")
+mesh = SubResource("BoxMesh_7u77a")
+script = ExtResource("2_8vjqc")

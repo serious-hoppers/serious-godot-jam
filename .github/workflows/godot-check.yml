@@ -1,0 +1,11 @@
+name: Godot Script Check
+on: [push, pull_request]
+jobs:
+  validate_scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Godot Syntax Check
+        run: godot --headless --check-only
